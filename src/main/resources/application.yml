@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: casadocodigo
+
+  thymeleaf:
+    cache: false
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+
+  h2:
+    console:
+      enabled: true

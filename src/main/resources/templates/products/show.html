@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{fragments/head :: head(${pageTitle})}"></th:block>
+
+<body>
+<th:block th:replace="~{fragments/header :: header}"></th:block>
+
+<main class="container py-5">
+    <section class="mb-4">
+        <a th:href="@{/products}" class="btn btn-outline-secondary btn-sm mb-4">
+            Voltar para produtos
+        </a>
+
+        <div class="bg-white border rounded-4 shadow-sm p-4 p-md-5">
+            <span class="badge text-bg-dark mb-3">Livro</span>
+
+            <h1 class="display-5 fw-bold mb-3" th:text="${product.title}">
+                Título do produto
+            </h1>
+
+            <p class="fs-5 text-secondary mb-4">
+                por <span th:text="${product.author}">Autor</span>
+            </p>
+
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <h2 class="h4 mb-3">Descrição</h2>
+                    <p class="mb-0" th:text="${product.description}">
+                        Descrição do produto
+                    </p>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="border rounded-4 p-4 bg-light h-100">
+                        <h2 class="h5 mb-3">Resumo</h2>
+
+                        <p class="text-secondary mb-2">Preço</p>
+                        <p class="fs-2 fw-bold text-primary mb-4"
+                           th:text="'R$ ' + ${#numbers.formatDecimal(product.price, 1, 2, 'COMMA')}">
+                            R$ 0,00
+                        </p>
+
+                        <button class="btn btn-primary w-100" type="button" disabled>
+                            Comprar em breve
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<th:block th:replace="~{fragments/footer :: footer}"></th:block>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{fragments/head :: head(${pageTitle})}"></th:block>
+
+<body>
+<th:block th:replace="~{fragments/header :: header}"></th:block>
+
+<main class="container py-5">
+    <section class="p-5 mb-4 bg-white rounded-4 border shadow-sm">
+        <div class="container-fluid py-4">
+            <span class="badge text-bg-dark mb-3">Mentoria Spring MVC Moderno</span>
+            <h1 class="display-4 fw-bold hero-title">Bem-vindo ao projeto</h1>
+            <p class="col-lg-9 fs-5 text-secondary" th:text="${highlightMessage}">
+                Spring MVC moderno com Kotlin e Thymeleaf
+            </p>
+            <p class="col-lg-10">
+                Nesta mentoria, vamos reconstruir a aplicação do livro com uma abordagem moderna,
+                mantendo os conceitos e atualizando a implementação.
+            </p>
+
+            <div class="d-flex gap-3 flex-wrap mt-4">
+                <a class="btn btn-primary btn-lg" th:href="@{/products}">
+                    Explorar estrutura de produtos
+                </a>
+                <a class="btn btn-outline-dark btn-lg" href="#">
+                    Ver próximos passos
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<th:block th:replace="~{fragments/footer :: footer}"></th:block>
+</body>
+</html>
