@@ -31,6 +31,7 @@ dependencies {
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+	testImplementation("com.ninja-squad:springmockk:4.0.2")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
@@ -40,12 +41,12 @@ kotlin {
 	}
 }
 
-allOpen {
-	annotation("jakarta.persistence.Entity")
-	annotation("jakarta.persistence.MappedSuperclass")
-	annotation("jakarta.persistence.Embeddable")
-}
-
 tasks.withType<Test> {
 	useJUnitPlatform()
+	jvmArgs = listOf("-Xshare:off")
+}
+
+// Suprimir warnings de deprecação internos do Gradle/Spring Boot
+tasks.withType<JavaExec> {
+	jvmArgs = listOf("-Xshare:off")
 }

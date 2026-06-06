@@ -4,6 +4,7 @@
 
 <body>
 <th:block th:replace="~{fragments/header :: header}"></th:block>
+<th:block th:replace="~{fragments/messages :: messages}"></th:block>
 
 <main class="container py-5">
     <section class="mb-4">
@@ -12,7 +13,19 @@
         </a>
 
         <div class="bg-white border rounded-4 shadow-sm p-4 p-md-5">
-            <span class="badge text-bg-dark mb-3">Livro</span>
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-3">
+                <span class="badge text-bg-dark">Livro</span>
+                <div class="d-flex gap-2">
+                    <a th:href="@{/products/{id}/edit(id=${product.id})}" class="btn btn-warning btn-sm">
+                        Editar
+                    </a>
+                    <a th:href="@{/products/{id}/delete(id=${product.id})}"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('Tem certeza que deseja excluir este produto?');">
+                        Excluir
+                    </a>
+                </div>
+            </div>
 
             <h1 class="display-5 fw-bold mb-3" th:text="${product.title}">
                 Título do produto
@@ -34,11 +47,22 @@
                     <div class="border rounded-4 p-4 bg-light h-100">
                         <h2 class="h5 mb-3">Resumo</h2>
 
-                        <p class="text-secondary mb-2">Preço</p>
+                        <p class="text-secondary mb-2">Preço base</p>
                         <p class="fs-2 fw-bold text-primary mb-4"
                            th:text="'R$ ' + ${#numbers.formatDecimal(product.price, 1, 2, 'COMMA')}">
                             R$ 0,00
                         </p>
+
+                        <div class="mb-2" th:if="${!#lists.isEmpty(prices)}">
+                            <p class="text-secondary mb-2">Preços por formato</p>
+                            <ul class="list-group list-group-flush bg-transparent">
+                                <li class="list-group-item bg-transparent px-0 py-1 d-flex justify-content-between"
+                                    th:each="price : ${prices}">
+                                    <span th:text="${price.bookType.displayName}">Formato</span>
+                                    <strong th:text="'R$ ' + ${#numbers.formatDecimal(price.priceValue, 1, 2, 'COMMA')}">R$ 0,00</strong>
+                                </li>
+                            </ul>
+                        </div>
 
                         <button class="btn btn-primary w-100" type="button" disabled>
                             Comprar em breve

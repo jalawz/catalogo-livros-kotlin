@@ -1,0 +1,10 @@
+<div th:fragment="messages" th:if="${successMessage} != null or ${errorMessage} != null" class="container mt-4">
+    <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${successMessage} != null">
+        <span th:text="${successMessage}">Operação realizada com sucesso!</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${errorMessage} != null">
+        <span th:text="${errorMessage}">Ocorreu um erro.</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>

@@ -18,20 +18,15 @@ class Product(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
 
-    @field:NotBlank(message = "O título é obrigatório")
     @Column(nullable = false, length = 150)
     var title: String = "",
 
-    @field:NotBlank(message = "A descrição é obrigatória")
     @Column(nullable = false, length = 1000)
     var description: String = "",
 
-    @field:NotBlank(message = "O autor é obrigatório")
     @Column(nullable = false, length = 120)
     var author: String = "",
 
-    @field:NotNull(message = "O preço é obrigatório")
-    @field:DecimalMin(value = "0.01", message = "O preço deve ser maior que zero")
     @Column(nullable = false, precision = 10, scale = 2)
-    var price: BigDecimal = BigDecimal.ZERO
+    var price: BigDecimal? = BigDecimal.ZERO
 )
